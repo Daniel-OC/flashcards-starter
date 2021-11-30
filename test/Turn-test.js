@@ -1,8 +1,9 @@
 const chai = require('chai')
-const Turn = require('../src/Card')
+const Card = require('../src/Card.js')
+const Turn = require('../src/Turn.js')
 const expect = chai.expect
 
-const Turn = require('../src/Turn.js')
+
 
 describe('Turn', function() {
 
@@ -20,18 +21,67 @@ describe('Turn', function() {
 		const turn = new Turn(guess, card);
 		expect(guess).to.be.arguments
 		expect(card).to.be.arguments
+		expect(turn.userGuess).to.be.equal(guess)
+		expect(turn.currentCard).to.be.deep.equal(card)
 	})
 
-	it('should only accept guess as a string')
-	it('should only accept an object for the card')
-	it('should have a returnGuess method')
-	it('should return the guess')
-	it('should return the card object')
-	it('should have an evaluateGuess method')
-	it('should require a guess to run')
-	it('should return true if the user\'s guess was correct')
+	it('should only accept guess as a string', function() {
+		const turn = new Turn(1, card);
+		//because in the function, we'll only instantiate it if it's a string
+		expect(turn.guess).to.be(null)
+
+		const turnTwo = new Turn('Fish', card)
+		expect(turn.guess).to.be('string')
+	})
+	
+	//LIKELY UNNECESSARY CUZ THIS WILL BE A PORTION OF THE GAME W/O ANY USER INPUT, THIS IS ALL UNDER THE DEVELOPER'S PURVIEW
+	//IF NECESSARY, NEEDS TO BE BROKEN INTO TWO TESTS, ONE THAT TESTS AN OBJECT, ONE THAT TESTS A NON OBJECT
+	// it('should only accept an object for the card', function() {
+	// 	const turn = new Turn(guess, card);
+	// 	expect(card).to.be.an('object')
+	// })
+
+	it('should have a returnGuess method', function() {
+		const turn = new Turn();
+		expect(turn.returnGuess).to.be.a('function')
+	})
+
+	it('should return the guess', function() {
+		const turn = new Turn("Fish", card)
+		expect(turn.returnGuess()).to.equal("Fish")
+	})
+
+	it('should have a returnCard method', function() {
+		const turn = new Turn();
+		expect(turn.returnCard).to.be.a('function')
+	})
+
+	it('should return the card object', function() {
+		const card = new Card();
+		const turn = new Turn(guess, card);
+		expect(turn.returnCard()).to.equal(card)
+	})
+
+
+	it('should have an evaluateGuess method', function() {
+		const card = new Card();
+		const turn = new Turn(guess, card);
+		expect(turn.evaluateGuess).to.be.a('function')
+	})
+
+	it('should require a guess to run', function() {
+		const turn = new Turn(guess, card);
+		expect(turn.evaluateGuess()).to.equal(null)
+	})
+
+	it('should return true if the user\'s guess was correct',)
+
 	it('should return false if the user\'s guess was incorrect')
-	it('should have a giveFeedback method')
+	it('should have a giveFeedback method', function() {
+		const turn = new Turn(guess,card);
+		expect(turn.giveFeedback).to.be.a('function')
+	})
+	
 	it('should return "correct!" if the user\'s guess was correct')
 	it('should return "incorrect" if the user\'s guess was incorrect')
 	
