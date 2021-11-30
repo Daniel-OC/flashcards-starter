@@ -74,15 +74,33 @@ describe('Turn', function() {
 		expect(turn.evaluateGuess()).to.equal(null)
 	})
 
-	it('should return true if the user\'s guess was correct',)
+	it('should return true if the user\'s guess was correct', function() {
+		const card = new Card(1,"What's the best pizza?",["Cheese", "Sausage", "Wax/For Show"], "Cheese")
+		const turn = new Turn("Cheese", card)
+		expect(turn.evaluateGuess()).to.equal(true)
+	})
 
-	it('should return false if the user\'s guess was incorrect')
+	it('should return false if the user\'s guess was incorrect', function() {
+		const card = new Card(1,"What's the best pizza?",["Cheese", "Sausage", "Wax/For Show"], "Cheese")
+		const turn = new Turn("Sausage", card)
+		expect(turn.evaluateGuess()).to.equal(false)
+	})
+
 	it('should have a giveFeedback method', function() {
 		const turn = new Turn(guess,card);
 		expect(turn.giveFeedback).to.be.a('function')
 	})
 	
-	it('should return "correct!" if the user\'s guess was correct')
-	it('should return "incorrect" if the user\'s guess was incorrect')
+	it('should return "correct!" if the user\'s guess was correct', function() {
+		const card = new Card(1,"What's the best pizza?",["Cheese", "Sausage", "Wax/For Show"], "Cheese")
+		const turn = new Turn("Cheese", card)
+		expect(turn.giveFeedback()).to.equal('Correct!')
+	})
+	
+	it('should return "incorrect" if the user\'s guess was incorrect', function() {
+		const card = new Card(1,"What's the best pizza?",["Cheese", "Sausage", "Wax/For Show"], "Cheese")
+		const turn = new Turn("Sausage", card)
+		expect(turn.giveFeedback()).to.equal('Incorrect!')
+	})
 	
 })
