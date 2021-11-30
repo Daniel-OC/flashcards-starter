@@ -18,20 +18,20 @@ describe('Turn', function() {
 	})
 
 	it('should accept an argument for the user\'s guess and the current card object', function() {
-		const turn = new Turn(guess, card);
-		expect(guess).to.be.arguments
-		expect(card).to.be.arguments
-		expect(turn.userGuess).to.be.equal(guess)
-		expect(turn.currentCard).to.be.deep.equal(card)
+		const card = new Card(1,"What's the best pizza?",["Cheese", "Sausage", "Wax/For Show"], "Cheese")
+		const turn = new Turn("Cheese", card)
+		expect(turn.userGuess).to.be.equal("Cheese")
+		expect(turn.card).to.deep.equal(card)
 	})
 
 	it('should only accept guess as a string', function() {
-		const turn = new Turn(1, card);
+		const card = new Card(1,"What's the best pizza?",["Cheese", "Sausage", "Wax/For Show"], "Cheese")
+		const turn = new Turn(1, card)
 		//because in the function, we'll only instantiate it if it's a string
-		expect(turn.guess).to.be(null)
+		expect(turn.userGuess).to.be.a(null)
 
 		const turnTwo = new Turn('Fish', card)
-		expect(turn.guess).to.be('string')
+		expect(turn.userGuess).to.be.a('string')
 	})
 	
 	//LIKELY UNNECESSARY CUZ THIS WILL BE A PORTION OF THE GAME W/O ANY USER INPUT, THIS IS ALL UNDER THE DEVELOPER'S PURVIEW
@@ -47,8 +47,9 @@ describe('Turn', function() {
 	})
 
 	it('should return the guess', function() {
-		const turn = new Turn("Fish", card)
-		expect(turn.returnGuess()).to.equal("Fish")
+		const card = new Card(1,"What's the best pizza?",["Cheese", "Sausage", "Wax/For Show"], "Cheese")
+		const turn = new Turn("Cheese", card)
+		expect(turn.returnGuess()).to.equal("Cheese")
 	})
 
 	it('should have a returnCard method', function() {
@@ -57,21 +58,21 @@ describe('Turn', function() {
 	})
 
 	it('should return the card object', function() {
-		const card = new Card();
-		const turn = new Turn(guess, card);
+		const card = new Card(1,"What's the best pizza?",["Cheese", "Sausage", "Wax/For Show"], "Cheese")
+		const turn = new Turn("Cheese", card)
 		expect(turn.returnCard()).to.equal(card)
 	})
 
-
 	it('should have an evaluateGuess method', function() {
-		const card = new Card();
-		const turn = new Turn(guess, card);
+		const card = new Card(1,"What's the best pizza?",["Cheese", "Sausage", "Wax/For Show"], "Cheese")
+		const turn = new Turn("Cheese", card)
 		expect(turn.evaluateGuess).to.be.a('function')
 	})
 
 	it('should require a guess to run', function() {
-		const turn = new Turn(guess, card);
-		expect(turn.evaluateGuess()).to.equal(null)
+		const card = new Card(1,"What's the best pizza?",["Cheese", "Sausage", "Wax/For Show"], "Cheese")
+		const turn = new Turn(undefined, card)
+		expect(turn.evaluateGuess()).to.equal(undefined)
 	})
 
 	it('should return true if the user\'s guess was correct', function() {
@@ -87,7 +88,8 @@ describe('Turn', function() {
 	})
 
 	it('should have a giveFeedback method', function() {
-		const turn = new Turn(guess,card);
+		const card = new Card(1,"What's the best pizza?",["Cheese", "Sausage", "Wax/For Show"], "Cheese")
+		const turn = new Turn("Cheese", card)
 		expect(turn.giveFeedback).to.be.a('function')
 	})
 	
