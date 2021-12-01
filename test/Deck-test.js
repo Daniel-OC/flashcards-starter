@@ -19,7 +19,7 @@ describe('Deck', function() {
 	})
 	it('should be full of Card objects', function() {
 		expect(deck.cards[0]).to.be.an('object')
-		expect(deck.cards[deck.cards.length]).to.be.an('object')
+		expect(deck.cards[deck.cards.length-1]).to.be.an('object')
 	})
 	it('should know how many cards are in the deck', function() {
 		expect(deck.countCards()).to.be.equal(30)
