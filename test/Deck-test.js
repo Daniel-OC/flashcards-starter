@@ -1,13 +1,17 @@
 const chai = require('chai')
+const data = require('../src/data.js')
 const Card = require('../src/Card.js')
 const Deck = require('../src/Deck.js')
+
 const expect = chai.expect
 
 describe('Deck', function() {
 	let deck;
+	const cards = data.prototypeData.map((info) => {return new Card(info.id, info.question, info.answers, info.correctAnswer)})
+
 
 	beforeEach(function() {
-		deck = new Deck()
+		deck = new Deck(cards)
 	})
 
 	it('should be initialized with an array of cards', function() {
@@ -18,7 +22,7 @@ describe('Deck', function() {
 		expect(deck.cards[deck.cards.length]).to.be.an('object')
 	})
 	it('should know how many cards are in the deck', function() {
-		expect(deck.cardCount).to.be.equal(deck.cards.length)
+		expect(deck.countCards()).to.be.equal(30)
 	})
 
 })
