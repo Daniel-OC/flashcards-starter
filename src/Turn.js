@@ -20,9 +20,11 @@ class Turn {
 	}
 	giveFeedback() {
 		if (this.evaluateGuess() === true) {
-			return 'Correct!'
+			// console.log('Good Work! Let\'s keep studying!')
+			return 'Good Work! Let\'s keep studying!'
 		} else {
-			return 'Incorrect!'
+			// console.log('Sorry, looks like this is one you should study!')
+			return 'Sorry, looks like this is one you should study!'
 		}
 	}
 }
