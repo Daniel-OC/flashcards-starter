@@ -21,12 +21,22 @@ class Round {
 		this.turnCount ++
 		this.currentCard = this.deck.cards[this.turnCount]		
 	}
+	calculateTotalCorrect() {
+		let totalCorrect = this.turnCount - this.incorrectGuesses.length
+		return totalCorrect
+	}
 	calculatePercentCorrect() {
-		let totalCorrect = this.turnCount - this.incorrectGuesses.length 
+		let totalCorrect = this.calculateTotalCorrect()
 		console.log(this.turnCount)
 		console.log(totalCorrect)
 		let percentCorrect = totalCorrect / this.turnCount * 100
-		return `You got ${percentCorrect}% correct!`
+		return percentCorrect
+	}
+	endRound() {
+		let totalCorrect = this.calculateTotalCorrect()
+		let percentCorrect = this.calculatePercentCorrect()
+		return `The round is over! You got ${totalCorrect}/${this.turnCount} (${parseFloat(percentCorrect).toFixed(2)}%) correct!`
+
 	}
 }
 

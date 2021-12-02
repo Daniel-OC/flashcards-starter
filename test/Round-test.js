@@ -65,16 +65,16 @@ describe('Round', function() {
 		for (let i = 0; i < deck.cards.length; i++) {
 			round.takeTurn("")
 		}
-		expect(round.calculatePercentCorrect()).to.equal("You got 0% correct!")
+		expect(round.calculatePercentCorrect()).to.equal(0)
 	})
 	it('should have an endRound method', function() {
-		expect(round.endRoud).to.be.a('function')
+		expect(round.endRound).to.be.a('function')
 	})
 	it('should tell the user when the round is over, as well as their score', function() {
 		for (let i = 0; i < deck.cards.length; i++) {
 			round.takeTurn("")
 		}
-			expect(round.endRound()).to.be.equal('The round is over! You got 0/30 (0%) correct!')
+			expect(round.endRound()).to.be.equal('The round is over! You got 0/30 (0.00%) correct!')
 	});
 })
 
