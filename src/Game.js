@@ -7,18 +7,17 @@ const Card = require('../src/Card.js')
 
 class Game {
   constructor() {
-		this.currentRound = 0;
-		this.cards = null;
-		this.deck = null;
-		this.round = null;
-
+		this.currentRound = {}
 
 	}
-	start(startingCards) {
-		this.currentRound++;
-		this.cards = startingCards.map((info) => {return new Card(info.id, info.question, info.answers, info.correctAnswer)})
-		this.deck = new Deck(this.cards)
-		this.round = new Round(this.deck)
+	start() {
+		const cards = prototypeQuestions.map((info) => {
+			let card = new Card(info.id, info.question, info.answers, info.correctAnswer)
+			return card})
+		let deck = new Deck(cards)
+		this.currentRound = new Round(deck)
+		this.printMessage(deck, this.currentRound)
+		this.printQuestion(this.currentRound)
 	}
 
   printMessage(deck, round) {
